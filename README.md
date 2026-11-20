@@ -30,8 +30,8 @@ uv python install 3.11
 ## 2. 连接硬件并填写配置
 
 ```bash
-git clone https://github.com/Chenyantt/robonix-dobot-nova2.git
-cd robonix-dobot-nova2
+git clone https://github.com/syswonder/robot-dobot-nova2.git
+cd robot-dobot-nova2
 cp .env.example .env
 ```
 
