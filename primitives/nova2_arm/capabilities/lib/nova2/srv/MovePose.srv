@@ -1,0 +1,10 @@
+# Absolute X Y Z in millimetres followed by Rx Ry Rz in degrees.
+float64[] pose_mm_deg
+# MovJ (joint path) or MovL (straight TCP path).
+string motion
+# Joint or linear velocity ratio; 0 selects the configured default.
+int32 velocity_percent
+---
+bool ok
+string message
+string result_json

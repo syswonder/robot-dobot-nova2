@@ -1,0 +1,9 @@
+# Absolute J1..J6 in degrees, exactly six values.
+float64[] joints_deg
+# 0 selects configured default, otherwise 1..configured maximum.
+int32 velocity_percent
+---
+bool ok
+string message
+string result_json
+

@@ -1,0 +1,6 @@
+float64 offset_deg
+bool confirmed
+---
+bool ok
+string message
+string result_json

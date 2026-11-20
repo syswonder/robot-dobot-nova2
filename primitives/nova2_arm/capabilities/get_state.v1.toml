@@ -1,0 +1,12 @@
+[contract]
+id = "robonix/primitive/dobot_nova2/get_state"
+version = "1"
+kind = "primitive"
+idl = "nova2/srv/GetState.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true
+

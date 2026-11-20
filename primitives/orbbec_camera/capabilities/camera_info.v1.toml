@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/primitive/orbbec_camera/camera_info"
+version = "1"
+kind = "primitive"
+idl = "orbbec_usb/srv/CameraInfo.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

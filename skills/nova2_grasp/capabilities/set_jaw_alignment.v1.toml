@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/skill/nova2_grasp/set_jaw_alignment"
+version = "1"
+kind = "skill"
+idl = "nova2_grasp/srv/SetJawAlignment.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

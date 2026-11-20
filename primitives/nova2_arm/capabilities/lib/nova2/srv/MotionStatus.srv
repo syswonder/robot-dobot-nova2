@@ -1,0 +1,9 @@
+# Empty means most recent motion.
+string run_id
+# Wait at most 10 seconds per poll; 0 returns immediately.
+float64 wait_s
+---
+bool ok
+string message
+string result_json
+

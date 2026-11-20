@@ -1,0 +1,20 @@
+manifestVersion: 1
+package:
+  name: robonix.primitive.hkv.tg9801.gripper
+  version: 0.1.0
+  description: Hangkai TG-9801 gripper over host USB-RS485, Modbus RTU or custom protocol.
+  tags: [primitive, gripper, tg9801, hkv, rs485]
+  maintainers:
+    - Chenyantt <101006730+Chenyantt@users.noreply.github.com>
+  license: MIT
+build: bash scripts/build.sh
+start: bash scripts/start.sh
+capabilities:
+  - {name: robonix/primitive/tg9801/info, path: capabilities/info.v1.toml}
+  - {name: robonix/primitive/tg9801/get_state, path: capabilities/get_state.v1.toml}
+  - {name: robonix/primitive/tg9801/open, path: capabilities/open.v1.toml}
+  - {name: robonix/primitive/tg9801/close, path: capabilities/close.v1.toml}
+  - {name: robonix/primitive/tg9801/grip, path: capabilities/grip.v1.toml}
+  - {name: robonix/primitive/tg9801/set_parameters, path: capabilities/set_parameters.v1.toml}
+  - {name: robonix/primitive/tg9801/move_position, path: capabilities/move_position.v1.toml}
+  - {name: robonix/primitive/tg9801/wait_for_state, path: capabilities/wait_for_state.v1.toml}

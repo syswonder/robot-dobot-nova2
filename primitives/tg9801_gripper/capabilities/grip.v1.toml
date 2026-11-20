@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/primitive/tg9801/grip"
+version = "1"
+kind = "primitive"
+idl = "tg9801/srv/Grip.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

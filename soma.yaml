@@ -1,0 +1,71 @@
+urdf:
+  path: ./model/nova2.urdf
+  root_link: dummy_link
+  model_name: nova2_robot
+robot:
+  id: dobot_nova2_01
+  display_name: Dobot Nova2
+  family: manipulator
+  root_part: arm
+  components:
+    - id: arm
+      type: manipulator
+      urdf_link: base_link
+      exports:
+        - provider_id: nova2_arm
+          capabilities:
+            - {path: robonix/primitive/dobot_nova2/get_state, description: "Read measured joint degrees, User0/Tool0 TCP mm/degrees, alarms and motion state."}
+            - {path: robonix/primitive/dobot_nova2/enable, description: "Enable the idle robot on explicit request."}
+            - {path: robonix/primitive/dobot_nova2/disable, description: "Stop and disable the robot on explicit request."}
+            - {path: robonix/primitive/dobot_nova2/stop, description: "Stop the motion queue and verify idle feedback."}
+            - {path: robonix/primitive/dobot_nova2/clear_error, description: "Request clearing resolved alarms; does not enable."}
+            - {path: robonix/primitive/dobot_nova2/move_joints, description: "Absolute J1..J6 in degrees using MovJ; poll returned run_id."}
+            - {path: robonix/primitive/dobot_nova2/move_pose, description: "Absolute XYZ mm plus RxRyRz degrees, User0/Tool0; MovJ or MovL; poll returned run_id."}
+            - {path: robonix/primitive/dobot_nova2/move_quaternion, description: "Absolute XYZ mm plus unit quaternion xyzw, User0/Tool0; poll returned run_id."}
+            - {path: robonix/primitive/dobot_nova2/motion_status, description: "Poll motion with wait_s up to 10; only SUCCEEDED confirms arrival."}
+            - {path: robonix/primitive/dobot_nova2/forward_kinematics, description: "Controller FK from joint degrees, without moving."}
+            - {path: robonix/primitive/dobot_nova2/inverse_kinematics, description: "Controller IK for User0/Tool0 mm/degrees, without moving."}
+      components:
+        - id: gripper
+          type: gripper
+          urdf_link: Link6
+          exports:
+            - provider_id: tg9801_gripper
+              capabilities:
+                - {path: robonix/primitive/tg9801/info, description: "Read TG9801 capabilities and runtime defaults; independent of Nova2."}
+                - {path: robonix/primitive/tg9801/get_state, description: "Read measured raw position, moving, holding and available errors; never infer holding from position alone."}
+                - {path: robonix/primitive/tg9801/open, description: "Release/open gripper only; may drop object. Custom release has no speed parameter on wire."}
+                - {path: robonix/primitive/tg9801/close, description: "Adaptive close gripper only. speed=0/force_percent=0 use defaults; force is device percent, not N. Query feedback afterward."}
+                - {path: robonix/primitive/tg9801/grip, description: "Adaptive grasp, equivalent to close. Wait for measured holding=true before any arm transport."}
+                - {path: robonix/primitive/tg9801/set_parameters, description: "Set speed/force defaults for next commands in provider memory only; no immediate motion or hardware writes."}
+                - {path: robonix/primitive/tg9801/move_position, description: "Optional raw 0..1000 force-position command, disabled by default; NOT mm or calibrated opening."}
+                - {path: robonix/primitive/tg9801/wait_for_state, description: "Poll holding/idle/not_moving, three matching samples, max 10s. Timeout does not stop or reverse."}
+    - id: camera
+      type: camera
+      # Externally mounted camera: no invented rigid transform to the arm.
+      exports:
+        - provider_id: orbbec_camera
+          capabilities:
+            - {path: robonix/primitive/orbbec_camera/get_state, description: "Read SDK USB camera freshness, frame ID, calibration fingerprint and metadata. No robot movement."}
+            - {path: robonix/primitive/orbbec_camera/camera_info, description: "Read original-resolution undistorted color K/D, serial and image coordinate convention; depth disabled."}
+            - {path: robonix/primitive/orbbec_camera/snapshot, description: "Get fresh calibrated JPEG as result_json.jpeg_base64 over MCP. Large image response; use grasp detect_object for semantic scene detection."}
+description:
+  summary: Six-axis physical Dobot Nova2 with firmware 3.5.8.5 controlled by V3 TCP/IP.
+  can_do:
+    - Read measured state, enable, disable, clear resolved alarms and stop.
+    - Move to six absolute joint angles in degrees or User0/Tool0 TCP poses in mm/degrees.
+    - Accept normalized quaternion xyzw poses, converted to native Euler angles.
+    - Verify motion completion and compute controller FK/IK.
+    - Open, adaptively close and query a TG-9801 gripper over host USB-RS485, independently of the arm.
+    - Configure next-command speed and target-force percent; optionally use raw force-position mode after manual checks.
+    - Use nova2_grasp skill to detect a described object through VLM or YOLO-OBB without motion, and plan calibrated fixed-height grasps.
+    - Acquire Orbbec Gemini color directly with SDK/USB through the lifecycle-managed camera primitive, with no calibration HTTP service.
+    - Use nova2_grasp approach to inspect alignment at the configured hover height. Pick vertically along the short axis and hold above the pickup point.
+    - Use nova2_grasp pick_and_place to release at the configured height of a named destination.
+    - Poll nova2_grasp task_status to confirm asynchronous completion; cancel the whole sequence using nova2_grasp stop.
+  cannot_do:
+    - Avoid obstacles or plan a collision-free path; the stored ready pose is a demonstrated pose, not an inferred safe path.
+    - Use camera/world coordinates without the saved calibration, or infer arbitrary grasp depth from a 2D image.
+    - Treat command acceptance as arrival or issue concurrent motions.
+    - Infer gripper contact from jaw position alone, calibrate opening in mm automatically, or stop gripper motors using the arm stop command.
+    - Stop or halt TG9801 jaws through an unverified command; no gripper stop API is exposed.

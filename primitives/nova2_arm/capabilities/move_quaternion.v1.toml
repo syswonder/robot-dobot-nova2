@@ -1,0 +1,12 @@
+[contract]
+id = "robonix/primitive/dobot_nova2/move_quaternion"
+version = "1"
+kind = "primitive"
+idl = "nova2/srv/MoveQuaternion.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true
+

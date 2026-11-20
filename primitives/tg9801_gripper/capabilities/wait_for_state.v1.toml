@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/primitive/tg9801/wait_for_state"
+version = "1"
+kind = "primitive"
+idl = "tg9801/srv/WaitForState.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

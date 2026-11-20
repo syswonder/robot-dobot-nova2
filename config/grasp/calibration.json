@@ -1,0 +1,144 @@
+{
+  "format": "nova2-planar-handeye-v1",
+  "id": "e23e87139cb7441f95f3ae20ff0dcc78",
+  "session_id": "0c988ce2b47543558da497a813379fd0",
+  "solved_at": 1795156270.5999339,
+  "units": {
+    "pixel": "px",
+    "robot": "mm",
+    "angle": "deg"
+  },
+  "frames": {
+    "user": 0,
+    "tool": 0
+  },
+  "camera": {
+    "backend": "orbbec",
+    "processing": "undistorted_color_same_K_v1",
+    "device": "Orbbec Gemini 336L",
+    "serial": "CPC8763000EG",
+    "K": [
+      [
+        610.23095703125,
+        0.0,
+        640.9644775390625
+      ],
+      [
+        0.0,
+        610.564208984375,
+        365.42230224609375
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "D": [
+      -0.03185466676950455,
+      0.036069806665182114,
+      -0.0002057910751318559,
+      0.0003433158271946013,
+      -0.012596781365573406,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "width": 1280,
+    "height": 720,
+    "format": "OBFormat.MJPG",
+    "captured_at": 1795155119.5736396
+  },
+  "camera_key": "e6d4e0b7fed362438a82f61c38f66937ed3dbf49feac4a95a3e73f17eee4d120",
+  "image_size": [
+    1280,
+    720
+  ],
+  "pixel_to_xy": [
+    [
+      0.10138120926326942,
+      -0.8667244739841634,
+      -91.0434086193441
+    ],
+    [
+      -0.8802195547466863,
+      -0.09852122203638966,
+      828.4898151903087
+    ],
+    [
+      -0.0002315521701923458,
+      -7.015440306855929e-05,
+      1.0
+    ]
+  ],
+  "z_mm": 131.84811061149333,
+  "orientation_rxryrz_deg": [
+    178.95464881064765,
+    1.4564084412283531,
+    77.81680075119135
+  ],
+  "quaternion_xyzw": [
+    0.7779830313463474,
+    0.6280905106056865,
+    -0.004160245861252569,
+    0.015079979396870842
+  ],
+  "orientation_policy": "vertical_down_free_yaw",
+  "verification_orientation": "preserve_current",
+  "vertical_constraint": {
+    "tool_axis": [
+      0,
+      0,
+      1
+    ],
+    "user_direction": [
+      0,
+      0,
+      -1
+    ],
+    "tolerance_deg": 2.0,
+    "yaw_unrestricted": true
+  },
+  "valid_pixel_polygon": [
+    [
+      1039.4029541015625,
+      269.328369140625
+    ],
+    [
+      988.0596923828125,
+      351.7164306640625
+    ],
+    [
+      732.5372924804688,
+      356.4925231933594
+    ],
+    [
+      546.2686767578125,
+      308.7313537597656
+    ],
+    [
+      524.776123046875,
+      139.17910766601562
+    ]
+  ],
+  "samples": 7,
+  "inliers": 4,
+  "fit_errors_mm": [
+    2.0521410309370016e-05,
+    3.993850430930134e-05,
+    14.52542140142536,
+    19.350803295514208,
+    7.198423948079487,
+    2.091590031835426e-05,
+    4.733667340486493e-06
+  ],
+  "rmse_mm": 9.541329365370947,
+  "max_error_mm": 19.350803295514208,
+  "accepted": true,
+  "limits": {
+    "z_tolerance_mm": 6.0,
+    "orientation_tolerance_deg": 2.0,
+    "max_fit_error_mm": 20.0
+  },
+  "scope": "same image mode and feature plane; vertical-down gripper, free yaw, centered grip axis assumed; training residuals are not independent validation"
+}

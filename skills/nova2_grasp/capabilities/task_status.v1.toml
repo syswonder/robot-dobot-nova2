@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/skill/nova2_grasp/task_status"
+version = "1"
+kind = "skill"
+idl = "nova2_grasp/srv/TaskStatus.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

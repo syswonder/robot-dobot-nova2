@@ -1,0 +1,68 @@
+manifestVersion: 1
+package:
+  name: robonix.skill.dobot.nova2.grasp
+  version: 0.1.0
+  description: Nova2 + TG9801 calibrated vertical grasp using VLM or YOLO-OBB, short-axis
+    alignment, fixed Z, measured holding, and named drop-off locations.
+  tags:
+  - skill
+  - grasp
+  - nova2
+  - tg9801
+  - vlm
+  - yolo
+  - handeye
+  maintainers:
+  - Chenyantt <101006730+Chenyantt@users.noreply.github.com>
+  license: MIT
+build: bash scripts/build.sh
+start: bash scripts/start.sh
+capabilities:
+- name: robonix/skill/nova2_grasp/status
+  path: capabilities/status.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/detect_object
+  path: capabilities/detect_object.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/plan_grasp
+  path: capabilities/plan_grasp.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/approach
+  path: capabilities/approach.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/pick
+  path: capabilities/pick.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/pick_and_place
+  path: capabilities/pick_and_place.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/home
+  path: capabilities/home.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/release
+  path: capabilities/release.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/stop
+  path: capabilities/stop.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/task_status
+  path: capabilities/task_status.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/set_jaw_alignment
+  path: capabilities/set_jaw_alignment.v1.toml
+  transport: mcp
+- name: robonix/skill/nova2_grasp/cycle_from_hover
+  path: capabilities/cycle_from_hover.v1.toml
+  transport: mcp
+depends:
+- name: robonix/primitive/orbbec_camera/snapshot
+- name: robonix/primitive/orbbec_camera/get_state
+- name: robonix/primitive/dobot_nova2/get_state
+- name: robonix/primitive/dobot_nova2/move_pose
+- name: robonix/primitive/dobot_nova2/move_joints
+- name: robonix/primitive/dobot_nova2/inverse_kinematics
+- name: robonix/primitive/dobot_nova2/motion_status
+- name: robonix/primitive/dobot_nova2/stop
+- name: robonix/primitive/tg9801/get_state
+- name: robonix/primitive/tg9801/open
+- name: robonix/primitive/tg9801/grip

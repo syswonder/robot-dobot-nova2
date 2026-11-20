@@ -1,0 +1,20 @@
+<robot name="nova2_joint_limits">
+  <joint name="joint1" type="revolute">
+    <limit lower="-6.28" upper="6.28" effort="100" velocity="2.36" />
+  </joint>
+  <joint name="joint2" type="revolute">
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="2.36" />
+  </joint>
+  <joint name="joint3" type="revolute">
+    <limit lower="-2.79" upper="2.79" effort="100" velocity="2.36" />
+  </joint>
+  <joint name="joint4" type="revolute">
+    <limit lower="-6.28" upper="6.28" effort="100" velocity="2.36" />
+  </joint>
+  <joint name="joint5" type="revolute">
+    <limit lower="-6.28" upper="6.28" effort="100" velocity="2.36" />
+  </joint>
+  <joint name="joint6" type="revolute">
+    <limit lower="-6.28" upper="6.28" effort="100" velocity="2.36" />
+  </joint>
+</robot>

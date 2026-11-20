@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/primitive/tg9801/get_state"
+version = "1"
+kind = "primitive"
+idl = "tg9801/srv/GetState.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

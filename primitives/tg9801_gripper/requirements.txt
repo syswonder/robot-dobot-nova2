@@ -1,0 +1,2 @@
+pyserial==3.5
+grpcio-tools>=1.62,<2

@@ -1,0 +1,6 @@
+float64[] joints_deg
+---
+bool ok
+string message
+string result_json
+

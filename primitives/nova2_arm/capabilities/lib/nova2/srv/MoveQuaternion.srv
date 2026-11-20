@@ -1,0 +1,10 @@
+# Absolute XYZ in millimetres, User0/Tool0.
+float64[] position_mm
+# Unit quaternion [qx,qy,qz,qw], scalar LAST.
+float64[] quaternion_xyzw
+string motion
+int32 velocity_percent
+---
+bool ok
+string message
+string result_json

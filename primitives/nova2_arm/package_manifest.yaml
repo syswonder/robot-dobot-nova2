@@ -1,0 +1,23 @@
+manifestVersion: 1
+package:
+  name: robonix.primitive.dobot.nova2.arm
+  version: 0.1.0
+  description: Dobot Nova2 V3/V4 enable, joint motion, pose motion and feedback.
+  tags: [primitive, arm, dobot, nova2, tcp]
+  maintainers:
+    - Chenyantt <101006730+Chenyantt@users.noreply.github.com>
+  license: MIT
+build: bash scripts/build.sh
+start: bash scripts/start.sh
+capabilities:
+  - {name: robonix/primitive/dobot_nova2/get_state, path: capabilities/get_state.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/enable, path: capabilities/enable.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/disable, path: capabilities/disable.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/clear_error, path: capabilities/clear_error.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/stop, path: capabilities/stop.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/move_joints, path: capabilities/move_joints.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/move_pose, path: capabilities/move_pose.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/move_quaternion, path: capabilities/move_quaternion.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/motion_status, path: capabilities/motion_status.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/forward_kinematics, path: capabilities/forward_kinematics.v1.toml}
+  - {name: robonix/primitive/dobot_nova2/inverse_kinematics, path: capabilities/inverse_kinematics.v1.toml}

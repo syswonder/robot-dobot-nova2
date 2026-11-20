@@ -1,0 +1,103 @@
+manifestVersion: 1
+name: dobot-nova2
+catalog:
+  name: robonix.robot.dobot.nova2
+  version: 0.1.0
+  description: Dobot Nova2 V3 TCP arm, TG-9801 RS485 gripper and Orbbec SDK USB camera with calibrated vision grasp.
+  tags: [robot, deploy, manipulator, dobot, nova2]
+  maintainers:
+    - Chenyantt <101006730+Chenyantt@users.noreply.github.com>
+  license: MIT
+env:
+  ROBONIX_PROVIDER_BIND_HOST: 127.0.0.1
+  ROBONIX_ADVERTISE_HOST: 127.0.0.1
+system:
+  atlas:
+    listen: 127.0.0.1:50051
+    log: info
+  executor:
+    listen: 127.0.0.1:50061
+    log: info
+  soma:
+    listen: 127.0.0.1:50091
+    robot_yaml: soma.yaml
+  pilot:
+    listen: 127.0.0.1:50071
+    log: info
+    vlm:
+      upstream: ${VLM_BASE_URL}
+      api_key: ${VLM_API_KEY}
+      model: ${VLM_MODEL}
+      api_format: openai
+  liaison:
+    listen: 127.0.0.1:50081
+    log: info
+primitive:
+  - name: nova2_arm
+    path: ./primitives/nova2_arm
+    config:
+      robot_ip: 192.168.5.1
+      protocol: v3
+      dashboard_port: 29999
+      motion_port: 30003
+      feedback_port: 30004
+      socket_timeout_s: 3.0
+      feedback_timeout_s: 2.0
+      motion_timeout_s: 300.0
+      default_velocity_percent: 10
+      max_velocity_percent: 80
+      acceleration_percent: 10
+  - name: tg9801_gripper
+    path: ./primitives/tg9801_gripper
+    config:
+      port: /dev/ttyUSB0
+      # This host is WSL2; relay Windows COM3 over local pipes, without usbipd.
+      # Native Linux: set windows_port to "" and use /dev/serial/by-id/... above.
+      windows_port: COM3
+      baudrate: 115200
+      device_id: 1
+      protocol: modbus
+      # Actual device + operator observation: 3 remains stable when gripping.
+      adaptive_status_scheme: three_is_holding
+      timeout_s: 0.5
+      default_speed: 300
+      default_force_percent: 20
+      max_speed: 1500
+      max_force_percent: 50
+      motion_enabled: true
+      position_control_enabled: false
+  - name: orbbec_camera
+    path: ./primitives/orbbec_camera
+    config:
+      backend: auto
+      serial_number: CPC8763000EG
+      color_width: 1280
+      color_height: 720
+      color_format: MJPG
+      color_fps: 10
+      publish_fps: 8
+      jpeg_quality: 88
+      startup_timeout_s: 30.0
+      max_frame_age_s: 3.0
+      expected_camera_key: e6d4e0b7fed362438a82f61c38f66937ed3dbf49feac4a95a3e73f17eee4d120
+
+skill:
+  - name: nova2_grasp
+    path: ./skills/nova2_grasp
+    config:
+      calibration_path: ../../config/grasp/calibration.json
+      ready_pose_path: ../../config/grasp/ready_pose.json
+      place_locations_path: ../../config/grasp/place_locations.json
+      camera_provider_id: orbbec_camera
+      camera_max_frame_age_s: 3.0
+      backend: vlm
+      approach_height_mm: 200.0
+      motion_timeout_s: 305.0
+      velocity_percent: 20
+      gripper_speed: 300
+      force_percent: 20
+      vertical_tolerance_deg: 2.0
+      max_calibration_error_mm: 20.0
+      jaw_axis_offset_deg: -45.0
+      jaw_alignment_confirmed: true
+      yolo_model_path: ""

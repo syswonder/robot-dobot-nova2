@@ -1,0 +1,6 @@
+string object
+string backend
+---
+bool ok
+string message
+string result_json

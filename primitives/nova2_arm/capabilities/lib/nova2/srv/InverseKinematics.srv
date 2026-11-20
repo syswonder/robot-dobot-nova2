@@ -1,0 +1,6 @@
+float64[] pose_mm_deg
+---
+bool ok
+string message
+string result_json
+

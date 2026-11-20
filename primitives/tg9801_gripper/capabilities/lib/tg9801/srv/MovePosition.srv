@@ -1,0 +1,7 @@
+int32 position_raw
+int32 speed
+int32 force_percent
+---
+bool ok
+string message
+string result_json

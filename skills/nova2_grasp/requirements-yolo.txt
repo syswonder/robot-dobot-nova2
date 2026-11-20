@@ -1,0 +1,2 @@
+# Optional; install only into this skill's own rbnx-build/venv.
+ultralytics>=8.3,<9

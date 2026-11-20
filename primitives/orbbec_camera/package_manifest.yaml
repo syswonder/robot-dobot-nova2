@@ -1,0 +1,15 @@
+manifestVersion: 1
+package:
+  name: robonix.primitive.orbbec.usb.camera
+  version: 0.1.0
+  description: Orbbec SDK USB color camera with calibrated undistorted JPEG snapshots, native Linux or WSL private Windows worker.
+  tags: [primitive, camera, orbbec, usb, rgb, gemini]
+  maintainers:
+    - Chenyantt <101006730+Chenyantt@users.noreply.github.com>
+  license: MIT
+build: bash scripts/build.sh
+start: bash scripts/start.sh
+capabilities:
+  - {name: robonix/primitive/orbbec_camera/get_state, path: capabilities/get_state.v1.toml, transport: mcp}
+  - {name: robonix/primitive/orbbec_camera/snapshot, path: capabilities/snapshot.v1.toml, transport: mcp}
+  - {name: robonix/primitive/orbbec_camera/camera_info, path: capabilities/camera_info.v1.toml, transport: mcp}

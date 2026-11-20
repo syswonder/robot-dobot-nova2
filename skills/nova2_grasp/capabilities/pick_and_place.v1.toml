@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/skill/nova2_grasp/pick_and_place"
+version = "1"
+kind = "skill"
+idl = "nova2_grasp/srv/PickAndPlace.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

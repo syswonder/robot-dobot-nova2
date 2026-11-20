@@ -1,0 +1,11 @@
+[contract]
+id = "robonix/skill/nova2_grasp/home"
+version = "1"
+kind = "skill"
+idl = "nova2_grasp/srv/Home.srv"
+
+[mode]
+type = "rpc"
+
+[semantics]
+user_invocable = true

@@ -1,0 +1,6 @@
+string condition
+float64 timeout_s
+---
+bool ok
+string message
+string result_json
