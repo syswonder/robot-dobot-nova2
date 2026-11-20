@@ -1,5 +1,7 @@
 # Dobot Nova2 · Robonix 整机部署
 
+[English](README.en.md) | 简体中文
+
 通过 `rbnx chat` 查询 Nova2 六轴状态、控制 TG-9801 夹爪，以及用 Orbbec 相机完成固定高度的视觉抓取和定点放置。机械臂使用 TCP/IP，夹爪使用主机 USB–RS485，相机使用 Orbbec SDK。运行无需 ROS 2 或 Docker。
 
 ![Dobot Nova2](assets/robot.jpg)
